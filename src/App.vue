@@ -12,7 +12,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 export default {
-  name: 'App',
+  name: 'App1',
   components: {
     Header,  // kv 一致 省略v 语法糖
     Footer
