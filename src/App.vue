@@ -3,7 +3,10 @@
       <Header></Header>
       <!-- 路由组件出口的地方 -->
       <router-view></router-view>
-      <Footer></Footer>
+      <!-- 在 home或者search 是显示的，在登录、注册是隐藏的 -->
+      <!-- 不建议这样写 代码太冗余 -->
+      <!-- <Footer v-show="$route.path == '/home' || $route.path == '/search'"></Footer> -->
+      <Footer v-show="$route.meta.show"></Footer>
   </div>
 </template>
 

@@ -134,6 +134,12 @@ V即为相应的路由组件
 components 文件夹中
 2. 路由组件一般需要在router文件夹中进行注册（使用的即为组件的名字）
 
+Footer 组件显示与隐藏
+Footer组件在 Home/Search 中 是显示的
+在登录或者是注册时候 是隐藏的
+我们可以根据组件身上的$router身上的获取的路由信息 通过路径判断Footer组件是否显示
+ 配置路由的时候 可以配置元信息 mate
+
 面试题：v-show与v-if区别?
 v-show:通过样式display控制
 v-if：通过元素上树与下树进行操作
