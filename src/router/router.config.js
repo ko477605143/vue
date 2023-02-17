@@ -20,7 +20,12 @@ export const routes = [
         // 路由组件是否能传递props参数
         // 第一种写法 布尔值
         // props: true,
-        props: {a:1,b:2}
+        // 第二种写法 额外的给路由组件传递一下 props
+        // props: {a:1,b:2}
+        // 第三种写法 函数写法
+        props: (r) => {
+            return {keyword: $route.par}
+        }
     },
     {
         path: '/login',
