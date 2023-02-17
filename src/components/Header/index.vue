@@ -34,7 +34,7 @@
                 </h1>
                 <div class="searchArea">
                     <form action="###" class="searchForm">
-                        <input type="text" id="autocomplete" class="input-error input-xxlarge" />
+                        <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyWork"/>
                         <button class="sui-btn btn-xlarge btn-danger" type="button" @click="search">搜索</button>
                     </form>
                 </div>
@@ -47,7 +47,7 @@
 export default {
   data () {
     return {
-
+        keyWork: '',
     }
   },
   components: {
@@ -58,8 +58,27 @@ export default {
   },
   methods: {
     search() {
-        // 编程式路由跳转
-        this.$router.push('/search')
+        // 编程式路由跳转 传递参数 需要再 router.config 中配置占位符  :xxx
+        // 第一种： 路由传递参数
+        // this.$router.push('/search/' + this.keyWork + '?k=' + this.keyWork.toUpperCase())
+        // 第二种 模板字符串
+        //this.$router.push(`/search/${this.keyWork}?k=${this.keyWork.toUpperCase()}`)
+        // 第三种 对象写法 第三种写法 学要在router中 配置 name属性 例如 search
+        this.$router.push({
+            name: 'search',
+            params: {
+                keyword: this.keyWork || undefined
+            },
+            query: {
+                k: this.keyWork.toUpperCase()
+            }
+        })
+        // 注意 对象写法 path参数和 params 不能一起使用 只能是 name参数和 params一起使用
+        // 如果不传params参数 必须在 ：router 后面加上问号 router?
+        // 如果传参是空的字符串 需要用 undefined解决
+        // 路由中 传递props数据
+        // 可以 有三种写法
+
     }
   },
 }

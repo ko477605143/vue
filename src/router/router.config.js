@@ -10,12 +10,17 @@ export const routes = [
             show: true
         }
     },
-    {
-        path: '/search',
+    {   
+        name: 'search',
+        path: '/search/:keyword?',
         component: () => import('../pages/Search'),
         meta: {
             show: true
-        }
+        },
+        // 路由组件是否能传递props参数
+        // 第一种写法 布尔值
+        // props: true,
+        props: {a:1,b:2}
     },
     {
         path: '/login',
