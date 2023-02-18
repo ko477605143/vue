@@ -28,6 +28,7 @@ export const routes = [
                 keyword: r.params.keyword, 
                 k: r.query.k 
             }
+
         }
     },
     {
