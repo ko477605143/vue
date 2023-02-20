@@ -57,8 +57,11 @@ VueRouter.prototype.push = function() {
 拆分组件：结构+样式+图片资源
 一共要拆分为七个组件
 
+三级联动组件
+--- 由于三级联动在HOME、search、Deail中使用了把三级联动注册为全局组件，只需要注册一次就可全局使用。
 
-
+其余静态组件的注意
+1 html + css + 图片
 
 
 

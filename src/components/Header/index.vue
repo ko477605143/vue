@@ -72,13 +72,23 @@ export default {
             query: {
                 k: this.keyWork.toUpperCase()
             }
-        })
+        }
+        // 不推荐这么写 但是可以解决promise 报错问题但是多个页面要写多次
+        // ,
+        //     (result)=> {
+                
+        //     },
+            
+        //     (error)=> {
+                
+        //     }
+        )
         // 注意 对象写法 path参数和 params 不能一起使用 只能是 name参数和 params一起使用
         // 如果不传params参数 必须在 ：router 后面加上问号 router?
         // 如果传参是空的字符串 需要用 undefined解决
         // 路由中 传递props数据
         // 可以 有三种写法
-
+        // console.log(this)
     }
   },
 }
