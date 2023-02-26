@@ -10,6 +10,9 @@
     <Floor/>
     <Floor/>
     <Brand/>
+    <!-- <button @click="add">点击我加1</button>
+    <button>仓库的数据 {{count }}</button>
+    <button @click="jian">点击我减1</button> -->
   </div>
 </template>
 
@@ -20,6 +23,7 @@ import Rank from '@/pages/Home/Rank'
 import Like from '@/pages/Home/Like'
 import Floor from '@/pages/Home/Floor'
 import Brand from '@/pages/Home/Brand'
+
 export default {
   data () {
     return {
@@ -38,8 +42,11 @@ export default {
 
   },
   methods: {
-
+   
   },
+  computed: {
+
+  }
 }
 
 </script>

@@ -15,10 +15,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 export default {
-  name: 'App1',
+  name: 'App',
   components: {
     Header,  // kv 一致 省略v 语法糖
     Footer
+  },
+  mounted(){
+    // 派发一个action  获取商品分类的三级列表数据
+    this.$store.dispatch('home/categoryList');
   }
 }
 </script>

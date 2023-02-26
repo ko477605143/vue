@@ -3,7 +3,9 @@ import App from './App.vue'
 
 import router from '@/router'
 // 三级联动的组件 -- 全局注册
-import TypeNav from '@/pages/Home/TypeNav'
+import TypeNav from '@/components/TypeNav'
+// 引入仓库
+import store from '@/store'
 
 Vue.config.productionTip = false
 
@@ -12,10 +14,15 @@ Vue.config.productionTip = false
  * 第二个参数： 哪个组件
  */
 Vue.component(TypeNav.name,TypeNav)
-
-
+// reqCategoryList().then((re) => {
+//   console.log(re)
+//   console.log(11)
+// })
 new Vue({
   render: h => h(App),
   // 注册路由 kv一致省略v
-  router
+  router,
+  // 注册仓库： 组件实例身上会多一个$store属性
+  store
 }).$mount('#app')
+

@@ -64,14 +64,17 @@ export default {
         // 第二种 模板字符串
         //this.$router.push(`/search/${this.keyWork}?k=${this.keyWork.toUpperCase()}`)
         // 第三种 对象写法 第三种写法 学要在router中 配置 name属性 例如 search
-        this.$router.push({
-            name: 'search',
-            params: {
-                keyword: this.keyWork || undefined
-            },
-            query: {
-                k: this.keyWork.toUpperCase()
+        // 如果有query參數也要帶過去
+        console.log()
+        if(this.$route.query) {
+            let location = {
+                name: 'search',
+                params: {
+                    keyword: this.keyWork || undefined
+                }
             }
+            location.query = this.$route.query;
+            this.$router.push(location);
         }
         // 不推荐这么写 但是可以解决promise 报错问题但是多个页面要写多次
         // ,
@@ -82,7 +85,7 @@ export default {
         //     (error)=> {
                 
         //     }
-        )
+        
         // 注意 对象写法 path参数和 params 不能一起使用 只能是 name参数和 params一起使用
         // 如果不传params参数 必须在 ：router 后面加上问号 router?
         // 如果传参是空的字符串 需要用 undefined解决
