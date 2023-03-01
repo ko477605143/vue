@@ -6,6 +6,11 @@ import router from '@/router'
 import TypeNav from '@/components/TypeNav'
 // 引入仓库
 import store from '@/store'
+// 引入mock.serve 
+import '@/mock/mockServe';
+// 引入swiper 样式
+// import 'swiper/css';
+
 
 Vue.config.productionTip = false
 

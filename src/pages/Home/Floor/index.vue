@@ -4,30 +4,13 @@
     <div class="floor">
         <div class="py-container">
             <div class="title clearfix">
-                <h3 class="fl">家用电器</h3>
+                <h3 class="fl">{{ floor.name }}</h3>
                 <div class="fr">
                     <ul class="nav-tabs clearfix">
-                        <li class="active">
-                            <a href="#tab1" data-toggle="tab">热门</a>
+                        <li class="active" v-for="nav,index in floor.navList" :key="index">
+                            <a href="#tab1" data-toggle="tab">{{ nav.text }}</a>
                         </li>
-                        <li>
-                            <a href="#tab2" data-toggle="tab">大家电</a>
-                        </li>
-                        <li>
-                            <a href="#tab3" data-toggle="tab">生活电器</a>
-                        </li>
-                        <li>
-                            <a href="#tab4" data-toggle="tab">厨房电器</a>
-                        </li>
-                        <li>
-                            <a href="#tab5" data-toggle="tab">应季电器</a>
-                        </li>
-                        <li>
-                            <a href="#tab6" data-toggle="tab">空气/净水</a>
-                        </li>
-                        <li>
-                            <a href="#tab7" data-toggle="tab">高端电器</a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -36,27 +19,17 @@
                     <div class="floor-1">
                         <div class="blockgary">
                             <ul class="jd-list">
-                                <li>节能补贴</li>
-                                <li>4K电视</li>
-                                <li>空气净化器</li>
-                                <li>IH电饭煲</li>
-                                <li>滚筒洗衣机</li>
-                                <li>电热水器</li>
+                                <li v-for="(key,index) in floor.keywords" :key="index">{{ key }}</li>
+                            
                             </ul>
-                            <img src="./images/floor-1-1.png" />
+                            <img :src="floor.imgUrl" />
                         </div>
                         <div class="floorBanner">
-                            <div class="swiper-container" id="floor1Swiper">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
-                                        <img src="./images/floor-1-b01.png">
+                            <div class="swiper-container" id="floor1Swiper" ref="cur">
+                                <div class="swiper-wrapper" >
+                                    <div class="swiper-slide" v-for="c in floor.carouselList" :key="c.id">
+                                        <img :src="c.imgUrl">
                                     </div>
-                                    <!-- <div class="swiper-slide">
-                                        <img src="./images/floor-1-b02.png">
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <img src="./images/floor-1-b03.png">
-                                    </div> -->
                                 </div>
                                 <!-- 如果需要分页器 -->
                                 <div class="swiper-pagination"></div>
@@ -69,22 +42,22 @@
                         <div class="split">
                             <span class="floor-x-line"></span>
                             <div class="floor-conver-pit">
-                                <img src="./images/floor-1-2.png" />
+                                <img :src="floor.recommendList[0]" />
                             </div>
                             <div class="floor-conver-pit">
-                                <img src="./images/floor-1-3.png" />
+                                <img :src="floor.recommendList[1]" />
                             </div>
                         </div>
                         <div class="split center">
-                            <img src="./images/floor-1-4.png" />
+                            <img :src="floor.bigImg" />
                         </div>
                         <div class="split">
                             <span class="floor-x-line"></span>
                             <div class="floor-conver-pit">
-                                <img src="./images/floor-1-5.png" />
+                                <img :src="floor.recommendList[2]" />
                             </div>
                             <div class="floor-conver-pit">
-                                <img src="./images/floor-1-6.png" />
+                                <img :src="floor.recommendList[3]" />
                             </div>
                         </div>
                     </div>
@@ -95,8 +68,52 @@
 </template>
 
 <script>
+// 引入Swiper
+import Swiper from 'swiper'
     export default {
-
+        props: ['floor'],
+        // 为什么第一次在mounted上不可以
+        /**
+         * 第一次书写轮播图的时候，是在当前组件内部发请求，动态渲染结构。【前提是需要数据都拿到】
+         * 现在的floor的组件是在home组件中发 通过props通信了。所有跨域在mounted中使用
+         */
+        mounted() {
+             //初始化Swiper类的实例
+          var mySwiper = new Swiper(
+           // document.querySelector(".swiper-container")
+           this.$refs.cur
+            , {
+            //设置轮播图防线
+            direction: "horizontal",
+            //开启循环模式
+            loop: true,
+            // 如果需要分页器
+            pagination: {
+              el: ".swiper-pagination",
+              //分页器类型
+              type: "bullets",
+              //点击分页器，切换轮播
+              clickable: true,
+            },
+            //自动轮播
+            autoplay: {
+              delay: 1000,
+              //新版本的写法：目前是5版本
+            //   pauseOnMouseEnter: true,
+              //如果设置为true，当切换到最后一个slide时停止自动切换
+              stopOnLastSlide: true,
+              //用户操作swiper之后，是否禁止autoplay
+              disableOnInteraction: false,
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            //切换效果
+            // effect: "cube",
+          });
+        }
     }
 </script>
 

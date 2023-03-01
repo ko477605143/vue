@@ -7,8 +7,7 @@
     <Recommend/>
     <Rank/>
     <Like/>
-    <Floor/>
-    <Floor/>
+    <Floor v-for="f in floorList" :key="f.id" :floor="f"/>
     <Brand/>
     <!-- <button @click="add">点击我加1</button>
     <button>仓库的数据 {{count }}</button>
@@ -24,12 +23,15 @@ import Like from '@/pages/Home/Like'
 import Floor from '@/pages/Home/Floor'
 import Brand from '@/pages/Home/Brand'
 
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
 
     }
   },
+
   components: {
     List,
     Recommend,
@@ -39,13 +41,16 @@ export default {
     Brand
   },
   mounted() {
-
+    // 派发action
+    this.$store.dispatch('home/getFloorList')
   },
   methods: {
    
   },
   computed: {
-
+    ...mapState({
+      floorList: state => state.home.floorList
+    })
   }
 }
 
